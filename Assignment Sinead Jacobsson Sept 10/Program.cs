@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Pipes;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Assignment_Sinead_Jacobsson_Sept_10
 {
@@ -15,13 +16,13 @@ namespace Assignment_Sinead_Jacobsson_Sept_10
             do
             {
                 Console.Clear();
-                Console.Write("----menu----\nEnter one of the following options: ?\nAdd.\nSubtract.\nMultipy.\nDivide.\nQuit.\nSelection: ");
+                Console.Write("----menu----\nEnter one of the following options: ?\nadd.\nsubtract.\nmultipy.\ndivide.\nquit.\nSelection: ");
 
                 string userInput = Console.ReadLine();
 
                 double numberOne;
                 double numberTwo;
-                double result;
+                double result;           
 
 
                 switch (userInput)
@@ -72,10 +73,19 @@ namespace Assignment_Sinead_Jacobsson_Sept_10
                         Console.Write("Please enter a second number: ");
                         numberTwo = Convert.ToDouble(Console.ReadLine());
 
-                        result = comDivide(numberOne, numberTwo);
-                        Console.WriteLine("Your answer is: " + result);
-                        break;
-                   
+                        if (numberTwo == 0)
+
+                        {
+                            Console.WriteLine("Error! You can not divide by zero!");
+                        }
+
+                        else
+                        {
+                            result = comDivide(numberOne, numberTwo);
+                            Console.WriteLine("Your answer is: " + result);
+                        }                      
+                            break;
+                                        
 
                     case "quit":
                         runMenu = false;
@@ -102,8 +112,9 @@ namespace Assignment_Sinead_Jacobsson_Sept_10
 
             }
 
-                
-             static double comSubtract(double numberOne, double numberTwo)
+            // method for subtract
+
+            static double comSubtract(double numberOne, double numberTwo)
             {
                 double subtract = numberOne - numberTwo;
 
@@ -111,6 +122,7 @@ namespace Assignment_Sinead_Jacobsson_Sept_10
 
             }
 
+            // method for multiply
 
             static double comMultiply(double numberOne, double numberTwo)
              {
@@ -120,16 +132,18 @@ namespace Assignment_Sinead_Jacobsson_Sept_10
 
              }
 
-             static double comDivide(double numberOne, double numberTwo)
-              {
-                  double divide = numberOne / numberTwo;
+            // method for divide
 
-                   return divide;
+            static double comDivide(double numberOne, double numberTwo)
+            {
 
-                    }
-                    
+                double divide = numberOne / numberTwo;
+
+                return divide;
+                              
 
 
+            }
 
 
 
